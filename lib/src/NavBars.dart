@@ -12,7 +12,8 @@ class DotNavigationBar extends StatelessWidget {
       this.selectedItemColor,
       this.unselectedItemColor,
       this.margin = const EdgeInsets.all(8),
-      this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      this.itemPadding =
+          const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       this.duration = const Duration(milliseconds: 500),
       this.curve = Curves.easeOutQuint,
       this.dotIndicatorColor,
@@ -29,7 +30,9 @@ class DotNavigationBar extends StatelessWidget {
         ),
       ],
       this.enableFloatingNavBar = true,
-      this.enablePaddingAnimation = true})
+      this.enablePaddingAnimation = true,
+      this.enableMagnification = false,
+      this.iconSize = 24})
       : super(key: key);
 
   /// A list of tabs to display, ie `Home`, `Profile`,`Cart`, etc
@@ -78,6 +81,10 @@ class DotNavigationBar extends StatelessWidget {
   final List<BoxShadow> boxShadow;
   final bool enableFloatingNavBar;
   final bool enablePaddingAnimation;
+  final bool enableMagnification;
+
+  // The size of the `DotNavigationBarItem`'s item icon
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +120,9 @@ class DotNavigationBar extends StatelessWidget {
                           onTap: onTap!,
                           itemPadding: itemPadding,
                           dotIndicatorColor: dotIndicatorColor,
-                          enablePaddingAnimation: enablePaddingAnimation),
+                          enablePaddingAnimation: enablePaddingAnimation,
+                          enableMagnification: enableMagnification,
+                          iconSize: iconSize),
                     ),
                   ),
                 ),
@@ -136,7 +145,9 @@ class DotNavigationBar extends StatelessWidget {
                   onTap: onTap!,
                   itemPadding: itemPadding,
                   dotIndicatorColor: dotIndicatorColor,
-                  enablePaddingAnimation: enablePaddingAnimation),
+                  enablePaddingAnimation: enablePaddingAnimation,
+                  enableMagnification: enableMagnification,
+                  iconSize: iconSize),
             ),
           );
   }

@@ -17,6 +17,8 @@ class Body extends StatelessWidget {
     required this.itemPadding,
     required this.dotIndicatorColor,
     required this.enablePaddingAnimation,
+    required this.enableMagnification,
+    required this.iconSize,
   }) : super(key: key);
 
   final List<DotNavigationBarItem> items;
@@ -30,6 +32,8 @@ class Body extends StatelessWidget {
   final EdgeInsets itemPadding;
   final Color? dotIndicatorColor;
   final bool enablePaddingAnimation;
+  final bool enableMagnification;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -63,16 +67,21 @@ class Body extends StatelessWidget {
                   hoverColor: _selectedColor.withOpacity(0.1),
                   child: Stack(children: <Widget>[
                     Padding(
-                      padding: itemPadding - (enablePaddingAnimation 
-                          ? EdgeInsets.only(right: itemPadding.right * t) 
-                          : EdgeInsets.zero),
+                      padding: itemPadding -
+                          (enablePaddingAnimation
+                              ? EdgeInsets.only(right: itemPadding.right * t)
+                              : EdgeInsets.zero),
                       child: Row(
                         children: [
                           IconTheme(
                             data: IconThemeData(
                               color: Color.lerp(
                                   _unselectedColor, _selectedColor, t),
-                              size: 24,
+                              size: iconSize +
+                                  (enableMagnification &&
+                                          items.indexOf(item) == currentIndex
+                                      ? 4
+                                      : 0),
                             ),
                             child: item.icon,
                           ),
